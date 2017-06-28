@@ -1,0 +1,44 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SousChef.UI.Themes">
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Light" Source="LightTheme.xaml" />
+    </ResourceDictionary.ThemeDictionaries>
+    <!--  Nav Button Style  -->
+
+    <Style x:Key="MenuCollapseButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource Color_Theme_001}" />
+        <Setter Property="Width" Value="44" />
+    </Style>
+
+    <Style x:Key="NavButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource Color_Theme_001}" />
+    </Style>
+
+    <!--  General page styles  -->
+
+    <Style x:Key="HeaderStyle" TargetType="TextBlock">
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="24" />
+    </Style>
+
+    <Style x:Key="PageStyle" TargetType="Page">
+        <Setter Property="Margin" Value="8" />
+    </Style>
+
+    <Style x:Key="FormLabelStyle" TargetType="TextBlock">
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="18" />
+    </Style>
+
+    <Style x:Key="FormFieldStyle" TargetType="TextBox">
+        <Setter Property="FontSize" Value="18" />
+    </Style>
+
+    <!--  Add Recipe Page Styles  -->
+
+    <Style x:Key="AddRecipeButtonTrayStyle" TargetType="Grid">
+        <Setter Property="Margin" Value="0,8,0,0" />
+    </Style>
+</ResourceDictionary>

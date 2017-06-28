@@ -1,0 +1,12 @@
+﻿<Application
+    x:Class="SousChef.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SousChef"
+    xmlns:shell="using:SousChef.Shell.Controls"
+    xmlns:ui="using:SousChef.UI.Themes"
+    RequestedTheme="Light">
+    <Application.Resources>
+        <ResourceDictionary Source="ms-appx:///SousChef.UI/Themes/SousChef.Theme.xaml" />
+    </Application.Resources>
+</Application>

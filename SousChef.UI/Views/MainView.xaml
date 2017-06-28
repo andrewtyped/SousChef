@@ -1,0 +1,68 @@
+﻿<Page
+    x:Class="SousChef.UI.Views.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:SousChef.UI.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:services="using:SousChef.UI.Services"
+    xmlns:shellModels="using:SousChef.Shell.Models"
+    xmlns:theme="using:SousChef.UI.Themes"
+    xmlns:viewModels="using:SousChef.UI.ViewModels"
+    d:DataContext="{d:DesignInstance viewModels:MainViewModel,
+                                     IsDesignTimeCreatable=False}"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <shellModels:DesignTimeResourceDictionary DesignTimeSource="ms-appx:///SousChef.UI/Themes/SousChef.Theme.xaml" />
+    </Page.Resources>
+
+    <SplitView
+        x:Name="NavigationPane"
+        CompactPaneLength="44"
+        DisplayMode="CompactInline">
+        <SplitView.Pane>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="44" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Button
+                    x:Name="HamburgerButton"
+                    Grid.Row="0"
+                    Click="HamburgerButton_Click"
+                    Style="{StaticResource MenuCollapseButtonStyle}">
+                    <Button.Content>
+                        <Path
+                            Data="{StaticResource BarsIcon}"
+                            Fill="{StaticResource Color_Neutral_002}"
+                            Stretch="Uniform"
+                            UseLayoutRounding="False" />
+                    </Button.Content>
+                </Button>
+
+                <StackPanel x:Name="NavigationMenu" Grid.Row="1">
+                    <Button
+                        x:Name="GoToMyRecipesButton"
+                        Command="{Binding GoToMyRecipesCommand}"
+                        Content="My Recipes"
+                        Style="{StaticResource NavButtonStyle}" />
+                    <Button
+                        x:Name="GoToAddRecipesButton"
+                        Command="{Binding GoToAddRecipeCommand}"
+                        Content="Add Recipe"
+                        Style="{StaticResource NavButtonStyle}" />
+                </StackPanel>
+            </Grid>
+        </SplitView.Pane>
+        <SplitView.Content>
+            <Frame x:Name="Content">
+                <ContentControl
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch"
+                    Background="Red"
+                    Content="{Binding ActiveView}"
+                    ContentTemplateSelector="{StaticResource ActiveViewDataTemplateSelector}" />
+            </Frame>
+        </SplitView.Content>
+    </SplitView>
+</Page>

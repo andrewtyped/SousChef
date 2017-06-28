@@ -1,0 +1,6 @@
+﻿CREATE TABLE [cook].[recipe]
+(
+	[id] UNIQUEIDENTIFIER NOT NULL,
+	[name] NVARCHAR(256) NOT NULL,
+	CONSTRAINT [PK_Recipe] PRIMARY KEY([id])
+)

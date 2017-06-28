@@ -1,0 +1,161 @@
+﻿<Page
+    x:Class="SousChef.UI.Views.AddRecipeView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:SousChef.UI.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:shellModels="using:SousChef.Shell.Models"
+    xmlns:viewModel="using:SousChef.UI.ViewModels"
+    d:DataContext="{d:DesignInstance viewModel:AddRecipeViewModel,
+                                     IsDesignTimeCreatable=False}"
+    Style="{StaticResource PageStyle}"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <shellModels:DesignTimeResourceDictionary DesignTimeSource="ms-appx:///SousChef.UI/Themes/SousChef.Theme.xaml" />
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="WideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="RecipeNamePanel.(Grid.Column)" Value="0" />
+                        <Setter Target="RecipeNamePanel.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="RecipeNamePanel.(Grid.Row)" Value="0" />
+                        <Setter Target="RecipeIngredientsPanel.(Grid.Column)" Value="0" />
+                        <Setter Target="RecipeIngredientsPanel.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="RecipeIngredientsPanel.(Grid.Row)" Value="1" />
+                        <Setter Target="RecipeIngredientsPanel.(Grid.RowSpan)" Value="2" />
+                        <Setter Target="RecipeStepsPanel.(Grid.Column)" Value="1" />
+                        <Setter Target="RecipeStepsPanel.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="RecipeStepsPanel.(Grid.Row)" Value="0" />
+                        <Setter Target="RecipeStepsPanel.(Grid.RowSpan)" Value="3" />
+                        <Setter Target="RecipeStepsPanel.Margin" Value="8,0,0,0" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="RecipeNamePanel.(Grid.Column)" Value="0" />
+                        <Setter Target="RecipeNamePanel.(Grid.ColumnSpan)" Value="2" />
+                        <Setter Target="RecipeNamePanel.(Grid.Row)" Value="0" />
+                        <Setter Target="RecipeIngredientsPanel.(Grid.Column)" Value="0" />
+                        <Setter Target="RecipeIngredientsPanel.(Grid.ColumnSpan)" Value="2" />
+                        <Setter Target="RecipeIngredientsPanel.(Grid.Row)" Value="1" />
+                        <Setter Target="RecipeIngredientsPanel.(Grid.RowSpan)" Value="1" />
+                        <Setter Target="RecipeStepsPanel.(Grid.Column)" Value="0" />
+                        <Setter Target="RecipeStepsPanel.(Grid.ColumnSpan)" Value="2" />
+                        <Setter Target="RecipeStepsPanel.(Grid.Row)" Value="2" />
+                        <Setter Target="RecipeStepsPanel.Margin" Value="0,0,0,0" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <TextBlock Style="{StaticResource HeaderStyle}" Text="New Recipe" />
+        <Grid x:Name="AddRecipeGrid" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel
+                x:Name="RecipeNamePanel"
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="2">
+                <TextBlock
+                    x:Uid="RecipeName"
+                    Style="{StaticResource FormLabelStyle}"
+                    Text="" />
+                <TextBox Style="{StaticResource FormFieldStyle}" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+            </StackPanel>
+            <Grid
+                x:Name="RecipeIngredientsPanel"
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    x:Uid="RecipeIngredients"
+                    Style="{StaticResource FormLabelStyle}"
+                    Text="" />
+                <ListBox
+                    x:Name="IngredientsListBox"
+                    Grid.Row="1"
+                    ItemsSource="{Binding Ingredients}"
+                    KeyDown="IngredientsListBox_KeyDown"
+                    KeyUp="IngredientsListBox_KeyUp"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto"
+                    SelectedItem="{Binding SelectedIngredient, Mode=TwoWay}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBox Style="{StaticResource FormFieldStyle}" Text="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+            <Grid
+                x:Name="RecipeStepsPanel"
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    x:Uid="RecipeSteps"
+                    Style="{StaticResource FormLabelStyle}"
+                    Text="" />
+                <TextBox
+                    Grid.Row="1"
+                    VerticalAlignment="Stretch"
+                    VerticalContentAlignment="Stretch"
+                    AcceptsReturn="True"
+                    Style="{StaticResource FormFieldStyle}"
+                    Text="{Binding Instructions, Mode=TwoWay}"
+                    TextWrapping="Wrap" />
+            </Grid>
+            <Grid
+                x:Name="AddRecipeButtonTray"
+                Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Style="{StaticResource AddRecipeButtonTrayStyle}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button
+                    x:Uid="SaveRecipe"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Center"
+                    Command="{Binding SaveRecipeCommand}"
+                    Content="" />
+            </Grid>
+        </Grid>
+
+    </Grid>
+</Page>
