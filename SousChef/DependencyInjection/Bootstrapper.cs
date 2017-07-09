@@ -1,4 +1,5 @@
 ﻿using StructureMap;
+using StructureMap.Graph.Scanning;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -39,12 +40,15 @@ namespace SousChef.DependencyInjection
 
                             return !isSystemAssembly && (isSousChefAssembly || isMetrologyAssembly);
                         });
+                        scan.LookForRegistries();
                         scan.WithDefaultConventions();
 
                     });
                 });
 
 #if DEBUG
+            TypeRepository.AssertNoTypeScanningFailures();
+
             var scanReport = Container.WhatDidIScan();
             var registryReport = Container.WhatDoIHave();
 

@@ -84,7 +84,7 @@ namespace SousChef
                 Window.Current.Activate();
 
                 var navigator = bootstrapper.Container.GetInstance<INavigator>();
-                navigator.NavigateTo(bootstrapper.Container.GetInstance<IMainViewModel>());
+                navigator.NavigateTo(bootstrapper.Container.GetInstance<ILoginViewModel>());
                // Task.Delay(5000).Wait();
                 //navigator.NavigateTo<MainViewModel>(new MainViewModel());
     }

@@ -10,12 +10,14 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Diagnostics;
 using SousChef.Domain.Interfaces;
+using SousChef.Domain;
 
 namespace SousChef.UI.ViewModels
 {
     public class AddRecipeViewModel : ViewModelBase, IAddRecipeViewModel
     {
         private readonly IRecipeFactory recipeFactory;
+        private readonly IRecipeRepository recipeRepository;
 
         private string name;
         private string instructions;
@@ -64,7 +66,8 @@ namespace SousChef.UI.ViewModels
         }
 
         public AddRecipeViewModel(IRelayCommandFactory commandFactory,
-                                  IRecipeFactory recipeFactory)
+                                  IRecipeFactory recipeFactory,
+                                  IRecipeRepository recipeRepository)
         {
             if(commandFactory == null)
             {
@@ -81,6 +84,7 @@ namespace SousChef.UI.ViewModels
             }
 
             this.recipeFactory = recipeFactory ?? throw new ArgumentNullException(nameof(recipeFactory));
+            this.recipeRepository = recipeRepository ?? throw new ArgumentNullException(nameof(recipeRepository));
         }
 
         private bool CanSave()
@@ -129,9 +133,9 @@ namespace SousChef.UI.ViewModels
                                                     Ingredients.Select(x => x.Text),
                                                     Instructions);
 
-            await Task.CompletedTask;
+            var result = await recipeRepository.SaveRecipeAsync(recipe);
 
-            return recipe;
+            return null;
         }
 
         private void RequeryCommands()

@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AppTitle.Text" xml:space="preserve">
+    <value>Sous Chef</value>
+    <comment>Label for app title</comment>
+  </data>
   <data name="RecipeIngredients.Text" xml:space="preserve">
     <value>Ingredients</value>
     <comment>Label for Ingredients field in Add Recipe view</comment>
@@ -132,5 +136,9 @@
   <data name="SaveRecipe.Content" xml:space="preserve">
     <value>Save Recipe</value>
     <comment>Label for save button in add recipe view</comment>
+  </data>
+  <data name="SignIn.Content" xml:space="preserve">
+    <value>Sign In</value>
+    <comment>Label for sign in buton in login view</comment>
   </data>
 </root>

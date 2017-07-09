@@ -10,10 +10,17 @@ namespace SousChef.Data.Models
         public virtual DbSet<RecipeIngredient> RecipeIngredient { get; set; }
         public virtual DbSet<RecipeInstruction> RecipeInstruction { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SousChefDbContext"/> class.
+        /// </summary>
+        /// <param name="options">
+        /// The options to configure the context with. This allows us to, for example, inject a connection string instead of 
+        /// hard-coding it or performing other gymnastics in <see cref="OnConfiguring(DbContextOptionsBuilder)"/>.
+        /// </param>
+        public SousChefDbContext(DbContextOptions<SousChefDbContext> options)
+            :base(options)
         {
-            #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\mssqllocaldb;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;Initial Catalog=SousChefDb");
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -24,7 +31,7 @@ namespace SousChef.Data.Models
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
-                    .ValueGeneratedNever();
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -38,7 +45,7 @@ namespace SousChef.Data.Models
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
-                    .ValueGeneratedNever();
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Ingredient)
                     .IsRequired()
@@ -76,7 +83,7 @@ namespace SousChef.Data.Models
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
-                    .ValueGeneratedNever();
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Instruction)
                     .IsRequired()

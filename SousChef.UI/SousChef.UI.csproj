@@ -109,6 +109,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="DependencyInjection\UIRegistry.cs" />
     <Compile Include="Interfaces\IAddRecipeViewModel.cs" />
+    <Compile Include="Interfaces\ILoginViewModel.cs" />
     <Compile Include="Interfaces\IMainViewModel.cs" />
     <Compile Include="Interfaces\IMyRecipesViewModel.cs" />
     <Compile Include="Interfaces\ISplashViewModel.cs" />
@@ -116,11 +117,15 @@
     <Compile Include="Services\ActiveViewDataTemplateSelector.cs" />
     <Compile Include="ViewModels\AddRecipeViewModel.cs" />
     <Compile Include="ViewModels\IngredientViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MyRecipesViewModel.cs" />
     <Compile Include="ViewModels\SplashViewModel.cs" />
     <Compile Include="Views\AddRecipeView.xaml.cs">
       <DependentUpon>AddRecipeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
@@ -169,6 +174,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -186,6 +195,10 @@
     <ProjectReference Include="..\SousChef.Domain\SousChef.Domain.csproj">
       <Project>{D9193BC7-02BF-4123-8514-140ACBA79CF7}</Project>
       <Name>SousChef.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SousChef.Security\SousChef.Security.csproj">
+      <Project>{58D3725D-C014-490C-86AE-4DA6D74E8002}</Project>
+      <Name>SousChef.Security</Name>
     </ProjectReference>
     <ProjectReference Include="..\SousChef.Shell\SousChef.Shell.csproj">
       <Project>{0F9258EF-14AB-46E9-BAB7-F5D76ED2D319}</Project>

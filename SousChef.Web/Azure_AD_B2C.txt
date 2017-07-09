@@ -1,0 +1,14 @@
+﻿The correct sample to use for the native app / web api workflow is
+
+https://github.com/Azure-Samples/active-directory-b2c-xamarin-native
+
+It works for UWP in addition to Xamarin.
+
+I had a lot of problems getting to the sign in page. Steps toward resolution:
+- Tried enabling 'Allow implicit flow' setting in the web api b2c app. Once I got the sample working,
+  I disabled it. The sample continued working.
+
+- The Custom Redirect URI in the client b2c app is important. Use the uri from Windows.Security.Authentication.Web.WebAuthenticationBroker.GetCurrentApplicationCallbackUri()
+
+- Fiddling with the sign up / sign in policy may have been the resolution. I noticed there was no app selected in the 'run policy settings' section. Things seemed to start working after I set a value.
+	- It should be noted, though, that when I download the policy XML, there's no mention whatsoever of the b2c applications in the markup.

@@ -11,9 +11,11 @@ namespace SousChef.Domain.DependencyInjection
     {
         public DomainRegistry()
         {
+            For<IRecipeDtoFactory>().Use<RecipeDtoFactory>().Singleton();
             For<IRecipeIngredientParser>().Use<RecipeIngredientParser>();
             For<IRecipeInstructionParser>().Use<RecipeInstructionParser>();
             For<IRecipeFactory>().Use<RecipeFactory>();
+            For<IRecipeRepository>().Use<RecipeRepository>().Singleton();
         }
     }
 }

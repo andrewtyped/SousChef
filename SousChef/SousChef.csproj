@@ -136,6 +136,10 @@
       <Project>{9d3e291e-5b21-484f-bfb0-0215e0b14453}</Project>
       <Name>SousChef.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SousChef.Security\SousChef.Security.csproj">
+      <Project>{58d3725d-c014-490c-86ae-4da6d74e8002}</Project>
+      <Name>SousChef.Security</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SousChef.Shell\SousChef.Shell.csproj">
       <Project>{0F9258EF-14AB-46E9-BAB7-F5D76ED2D319}</Project>
       <Name>SousChef.Shell</Name>
